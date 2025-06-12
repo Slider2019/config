@@ -1,14 +1,14 @@
-### 📝 **Configuración Manual de Máquinas Virtuales**
+### 📝 Configuración Manual de Máquinas Virtuales
 
 -----
 
-#### 👨‍🏫 **Hola y bienvenidos**
+#### 👨‍🏫 Hola y bienvenidos
 
 En éste README encontrarás información útil para aprovisionar tu primera máquina virtual manualmente.
 
 -----
 
-### 📋 **Requisitos Previos (Solo para Windows)**
+### 📋 Requisitos Previos (Solo para Windows)
 
 Antes de empezar, debemos cumplir algunos requisitos previos. Esto es **sólo para Windows**. Si usas macOS ó Linux, no encontrarás esta opción.
 
@@ -20,25 +20,34 @@ Antes de empezar, debemos cumplir algunos requisitos previos. Esto es **sólo pa
       * Guarda los cambios y sal de la BIOS para que el ordenador se reinicie.
       * Ejemplos de nombres: `Intel Virtualization Technology`, `VTx`, `SVM mode`.
 
-     *(Imagen de referencia de Google Images)*
+<p align="center">
+  <img src="src/BIOS1.jpg" width="600"/>
+</p>
+
+<p align="center">
+  <img src="src/BIOS2.jpg" width="600"/>
+</p>
 
 2.  **Desactivar características de Windows:**
 
-      * Busca "Activar o desactivar las características de Windows" en el menú de inicio.
+<p align="center">
+  <img src="src/ref.png" width="400"/>
+</p>
 
-      *(Imagen de referencia de Google Images)*
+* Busca "Activar o desactivar las características de Windows" en el menú de inicio.
       
-      * Desmarca las siguientes opciones:
+  * Desmarca las siguientes opciones:
           * `Plataforma Microsoft Hyper-V` o `Windows Hypervisor`.
           * `Subsistema de Windows para Linux`.
           * `Plataforma de máquina virtual`.
-      * Haz clic en "Aceptar" y reinicia tu ordenador.
+  * Haz clic en "Aceptar" y reinicia tu ordenador.
+
 
 **Resumen:** Activa `VTx` en la BIOS y desactiva las características de Windows mencionadas.
 
 -----
 
-### ⚠️ **Solución de Problemas Comunes**
+### ⚠️ Solución de Problemas Comunes
 
   * **La VM no obtiene una dirección IP:** Esto suele ocurrir por culpa del router.
       * **Solución (como medida de precaución):**
@@ -49,75 +58,103 @@ Antes de empezar, debemos cumplir algunos requisitos previos. Esto es **sólo pa
 
 -----
 
-### ⚙️ **Parte 1: Provisionamiento manual de VMs**
+### ⚙️ Parte 1: Provisionamiento manual de VMs
 
-#### **Paso 1: Crear la Máquina Virtual**
+#### Paso 1: Crear una VM Ubuntu
 
 1.  Abre **Oracle VirtualBox**.
-2.  Haz clic en "Nueva"
-3.  **Nombre:** `ubuntuvm` (o el que prefieras).
-4.  **Ubicación:** Elige dónde guardar la VM.
-5.  **Tipo:** `Linux`.
-6.  **Versión:** `ubuntu (64-bit)`.
-      * 🚨 **Importante:** Si no ves la opción de 64 bits, significa que la virtualización (VT) no está habilitada en tu BIOS.
+2.  Haz clic en "Nueva" (Icono de engranaje)
+<p align="center">
+  <img src="src/1VB.png" width="500"/>
+</p>
 
-#### **Paso 2: Asignar Hardware**
+4.  **Nombre:** `ubuntuvm` (o el que prefieras).
+5.  **Ubicación:** Elige dónde guardar la VM.
+6.  **Tipo:** `Linux`.
+7.  **Sub-Type:** `Ubuntu`.
+8.  **Versión:** `ubuntu (64-bit)`.
+<p align="center">
+  <img src="src/2VB.png" width="500"/>
+</p>
+
+
+* 🚨 **Importante:** Si no ves la opción de 64 bits, significa que la virtualización (VT) no está habilitada en tu BIOS.
+
+
+#### Paso 2: Asignar Hardware
 
 1.  **Memoria RAM:** `2048 MB` (2 GB). Puedes usar `1024 MB` (1 GB) si tienes pocos recursos.
-2.  **CPU:** `2` procesadores (O menos dependiendo de tu Equipo).
+2.  **CPU:** `2` procesadores (ó menos dependiendo de tu Equipo).
 3.  **Disco Duro:**
       * Crea un disco duro virtual.
       * **Tamaño:** `20 GB` (20 GB es lo mínimo recomendable).
       * Asegúrate de que la opción "Reservar completamente" **no** esté marcada para que el espacio se asigne dinámicamente.
 4.  Haz clic en "Finalizar".
 
+<p align="center">
+  <img src="src/3VB.png" width="500"/>
+</p>
+<p align="center">
+  <img src="src/4VB.png" width="500"/>
+</p>
+
 -----
 
-### ⚙️ **Parte 2: Configuración de una vm CentOS**
+### ⚙️ Parte 2: Configuración de una vm CentOS
 
 1.  Haz clic en "Nueva".
 2.  **Nombre:** `centosvm`.
 3.  **Tipo:** `Linux`.
 4.  **Versión:** `Red Hat (64-bit)`.
 5.  **Hardware:**
-      * **Memoria RAM:** `2048 MB` (2 GB).
-      * **CPU:** `2` procesadores.
+      * **Memoria RAM:** `2048 MB` (2 GB) (ó menos dependiendo de tus recursos)
+      * **CPU:** `2` procesadores (ó 1 dependiendo de tus recursos)
       * **Disco Duro:** `25 GB` (valor por defecto para Ubuntu).
 6.  Haz clic en "Finalizar".
 
 -----
 
-### 🌐 **Conceptos de Red y Configuración**
+### 🌐 Conceptos de Red y Configuración
 
-#### **Descarga de la ISO de CentOS**
+#### Descarga de la ISO de CentOS
 
 1.  Busca en Google: "`CentOS Stream 9 ISO download`".
 2.  Ve al primer enlace (índice de `stream 9 base os`).
 3.  Descarga el archivo que termina en `boot.iso` (aproximadamente 1 GB).
 
-#### **Conectar la ISO a la VM CentOS**
+#### Conectar la ISO a la VM CentOS
 
 1.  Selecciona la `centosvm` y ve a "Configuración" -\> "Almacenamiento".
-2.  En "Controlador: IDE", haz clic en "Vacío".
-3.  En el menú desplegable de la derecha, selecciona "Elegir un archivo de disco" y abre el archivo ISO que descargaste.
-4.  Marca la casilla "Live CD/DVD".
-5.  Haz clic en "Aceptar".
 
-#### **Concepto de Red en Puente (Bridged Networking)**
+<p align="center">
+  <img src="src/5VB.png" width="500"/>
+</p>
+
+3.  En "Controlador: IDE", haz clic en "Vacío".
+4.  En el menú desplegable de la derecha, selecciona "Elegir un archivo de disco" y abre el archivo ISO que descargaste.
+5.  Marca la casilla "Live CD/DVD".
+6.  Haz clic en "Aceptar".
+
+<p align="center">
+  <img src="src/6VB.png" width="500"/>
+</p>
+
+#### Concepto de Red en Puente (Bridged Networking)
 
   * Para que una VM se conecte a la red, necesita un **Adaptador de Red Virtual**.
   * Usaremos un **Adaptador Puenteado** (`Bridged Adapter`).
   * Esto conecta el adaptador de la VM directamente a tu router físico a través del adaptador de red de tu ordenador (WiFi o Ethernet).
   * El router le asignará a la VM una dirección IP en la misma red que tu ordenador.
 
-#### **Verificar la IP de tu Ordenador**
+
+#### Verificar la IP de tu Ordenador
 
   * Abre el Símbolo del sistema (CMD en Windows) o la Terminal (macOS).
   * **Comando en Windows:** `ipconfig`
   * **Comando en macOS:** `ifconfig`
   * Anota la dirección IP de tu adaptador WiFi o Ethernet (ej: `192.168.1.10`) y la puerta de enlace (`192.168.1.1`).
 
-#### **Configurar el Adaptador Puenteado en la VM**
+#### Configurar el Adaptador Puenteado en la VM
 
 1.  Selecciona la `centosvm` -\> "Configuración" -\> "Red".
 2.  Ve a la pestaña "Adaptador 2".
@@ -127,7 +164,11 @@ Antes de empezar, debemos cumplir algunos requisitos previos. Esto es **sólo pa
 6.  Asegúrate de que "Cable conectado" esté marcado.
 7.  Haz clic en "Aceptar".
 
-#### **Ajuste Final: Dispositivo Señalador**
+<p align="center">
+  <img src="src/7VB.png" width="500"/>
+</p>
+
+#### Ajuste Final: Dispositivo Señalador
 
 1.  Ve a "Configuración" -\> "Sistema" -\> "Placa base".
 2.  En "Dispositivo señalador", selecciona `Tableta USB`. Esto mejora la experiencia del cursor del ratón dentro de la VM.
@@ -135,7 +176,7 @@ Antes de empezar, debemos cumplir algunos requisitos previos. Esto es **sólo pa
 
 -----
 
-### 🚀 **Instalación de CentOS Stream 9**
+### 🚀 Instalación de CentOS Stream 9
 
 1.  Selecciona la `centosvm` y haz clic en "Iniciar".
 2.  En la pantalla negra, haz clic para capturar el ratón y usa las flechas para seleccionar `Install CentOS Stream 9` y pulsa `Enter`.
@@ -156,7 +197,7 @@ Antes de empezar, debemos cumplir algunos requisitos previos. Esto es **sólo pa
       * Haz clic en "Done" (dos veces si la contraseña es débil).
 7.  Haz clic en **"Begin Installation"**. El proceso tardará entre 10 y 15 minutos.
 
-#### **Post-Instalación**
+#### Post-Instalación
 
 1.  Cuando la instalación termine, **NO hagas clic en "Reboot System"**.
 2.  Ve a VirtualBox, haz clic derecho en la VM -\> "Apagar" -\> "Apagado ACPI".
@@ -174,9 +215,9 @@ Antes de empezar, debemos cumplir algunos requisitos previos. Esto es **sólo pa
 
 -----
 
-### 🚀 **Instalación de Ubuntu Server 22**
+### 🚀 Instalación de Ubuntu Server 22
 
-#### **Paso 1: Preparación**
+#### Paso 1: Preparación
 
 1.  **Descargar la ISO:** Busca en Google "`Ubuntu 24 server ISO`". Descarga la imagen de instalación del servidor (LTS).
 2.  **Configurar la VM `ubuntuvm`:**
@@ -184,7 +225,7 @@ Antes de empezar, debemos cumplir algunos requisitos previos. Esto es **sólo pa
       * "Configuración" -\> "Red" -\> "Adaptador 2" -\> Configura el `Adaptador puente` igual que con CentOS.
 3.  Inicia la `ubuntuvm`.
 
-#### **Paso 2: Instalación Guiada**
+#### Paso 2: Instalación Guiada
 
 La instalación de Ubuntu es más directa. Usa las flechas y la tecla `Enter`.
 
@@ -208,7 +249,7 @@ La instalación de Ubuntu es más directa. Usa las flechas y la tecla `Enter`.
 
 La instalación comenzará y tardará unos 10-15 minutos.
 
-#### **Paso 3: Post-Instalación**
+#### Paso 3: Post-Instalación
 
 1.  Cuando veas la opción para reiniciar, **apaga la VM** desde VirtualBox ("Apagado ACPI").
 2.  **Expulsa la ISO** desde "Configuración" -\> "Almacenamiento".
@@ -226,19 +267,19 @@ En éste apartado vamos a hablarles de una herramienta llamada **Vagrant**. Util
 
 ---
 
-### 🤖 **¿Qué es Vagrant y Qué Problema Resuelve?**
+### 🤖 ¿Qué es Vagrant y Qué Problema Resuelve?
 
 * **Definición:** Vagrant es una herramienta para la **automatización de VMs**. Gestiona todo el ciclo de vida de una máquina virtual: creación, configuración, cambios y limpieza.
 * **Importante:** Vagrant **no reemplaza** a los hipervisores como VMware o VirtualBox. Trabaja *sobre* ellos para automatizar sus tareas.
 
-#### **Problemas de la Gestión Manual de VMs:**
+#### Problemas de la Gestión Manual de VMs:
 
 1.  **Instalación Larga y Tediosa:** Instalar un sistema operativo manualmente requiere seguir muchos pasos.
 2.  **Consume Mucho Tiempo:** Especialmente si necesitas configurar varias máquinas virtuales.
 3.  **Propenso a Errores Humanos:** A más pasos manuales, mayor es la probabilidad de cometer errores.
 4.  **Difícil de Replicar:** Configurar el mismo entorno en otra máquina es un proceso arduo y repetitivo.
 
-#### **Soluciones que Ofrece Vagrant:**
+#### Soluciones que Ofrece Vagrant:
 
 1.  **Sin Instalación de SO:** Vagrant utiliza imágenes de VM pre-configuradas llamadas **Boxes**, que se descargan desde **Vagrant Cloud**.
 2.  **Configuración Centralizada:** Toda la configuración de la VM (RAM, CPU, IP) se define en un único archivo de texto llamado `Vagrantfile`.
@@ -252,7 +293,7 @@ En éste apartado vamos a hablarles de una herramienta llamada **Vagrant**. Util
 
 ---
 
-### 🏗️ **Arquitectura de Vagrant**
+### 🏗️ Arquitectura de Vagrant
 
 El flujo de trabajo es el siguiente:
 
@@ -265,11 +306,11 @@ El flujo de trabajo es el siguiente:
 
 ---
 
-### ⚙️ **Paso a Paso: Configuración del Entorno de Trabajo**
+### ⚙️ Paso a Paso: Configuración del Entorno de Trabajo
 
 Vagrant es una herramienta de línea de comandos. Usaremos **Git Bash** en Windows y la **Terminal** en macOS.
 
-#### **1. Crear y Navegar a la Carpeta de Trabajo**
+#### 1. Crear y Navegar a la Carpeta de Trabajo
 
 * Abre Git Bash (o la Terminal en Mac).
 * **Para usuarios de Windows (ejemplo en la unidad F):**
@@ -284,7 +325,7 @@ Vagrant es una herramienta de línea de comandos. Usaremos **Git Bash** en Windo
     ```
 * Verifica que estás en el directorio correcto con `pwd`.
 
-#### **2. Crear Carpetas para las VMs**
+#### 2. Crear Carpetas para las VMs
 Dentro de la carpeta `vagrant-vms`, crea dos subcarpetas:
 ```bash
 mkdir centos
@@ -293,9 +334,9 @@ mkdir ubuntu
 
 ---
 
-### 🚀 **Creación de la VM CentOS**
+### 🚀 Creación de la VM CentOS
 
-#### **1. Preparar el Vagrantfile**
+#### 1. Preparar el Vagrantfile
 
 * Navega a la carpeta `centos`:
     ```bash
@@ -315,7 +356,7 @@ mkdir ubuntu
     * Esto creará un archivo llamado `Vagrantfile` en el directorio.
     * Puedes ver su contenido con `cat Vagrantfile`. La línea clave es `config.vm.box = "..."`.
 
-#### **2. Iniciar y Gestionar la VM**
+#### 2. Iniciar y Gestionar la VM
 
 * **Levantar la VM:**
     ```bash
@@ -362,11 +403,11 @@ mkdir ubuntu
 
 ---
 
-### 🚀 **Creación de la VM Ubuntu**
+### 🚀 Creación de la VM Ubuntu
 
 El proceso es muy similar.
 
-#### **1. Preparar el Vagrantfile**
+#### 1. Preparar el Vagrantfile
 
 * Navega a la carpeta `ubuntu`. Puedes usar `cd ..` para subir un nivel y luego `cd ubuntu`.
     ```bash
@@ -380,7 +421,7 @@ El proceso es muy similar.
     vagrant init ubuntu/jammy64
     ```
 
-#### **2. Iniciar la VM**
+#### 2. Iniciar la VM
 ```bash
 vagrant up
 ```
@@ -388,7 +429,7 @@ vagrant up
 
 ---
 
-### 📋 **Comandos Globales y Consejos Finales**
+### 📋 Comandos Globales y Consejos Finales
 
 * **Listar Boxes descargadas:**
     ```bash
@@ -415,7 +456,7 @@ vagrant up
 
 * **Práctica:** ¡No te detengas aquí! Experimenta creando VMs con otras "boxes" en diferentes carpetas. La práctica constante con la línea de comandos te hará un pro.
 
-* **IMPORTANTE:** Mantén estas dos VMs (`centos` y `ubuntu`) detenidas (`vagrant halt`) pero no destruidas. Las usaremos en la próxima sección sobre Linux. Antes de apagar tu ordenador, asegúrate siempre de apagar tus VMs primero.
+* **IMPORTANTE:** Antes de apagar tu ordenador, asegúrate siempre de apagar tus VMs primero.
 
 ---
 
