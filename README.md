@@ -458,10 +458,6 @@ vagrant up
 
 * **IMPORTANTE:** Antes de apagar tu ordenador, asegúrate siempre de apagar tus VMs primero.
 
----
-
-Eso es todo en esta conferencia. ¡Termina con esto y únete a mí en la próxima!
-
 -----
 
 ### ✅ **Conclusión**
