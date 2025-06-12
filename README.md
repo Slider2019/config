@@ -263,7 +263,7 @@ La instalación comenzará y tardará unos 10-15 minutos.
 
 ## Provisionamiento automatizado de VMs con Vagrant.
 
-En éste apartado vamos a hablarles de una herramienta llamada **Vagrant**. Utilizaremos esta herramienta para gestionar automáticamente las máquinas virtuales.
+En éste apartado voy a hablarles de una herramienta llamada **Vagrant**. Utilizaremos esta herramienta para gestionar automáticamente las máquinas virtuales.
 
 ---
 
